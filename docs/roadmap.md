@@ -92,14 +92,3 @@ Add alerts for high failure rates or cloud operation latency spikes.
 
 ### Operational runbooks
 Document failure scenarios and common remediation steps.
-
-## 7. Why These Items Were Deferred
-
-These items were intentionally left out of the initial submission because the assessment was time-boxed to 2–4 hours.
-
-The submission prioritizes:
-- a clean and runnable proof-of-concept
-- clear API design
-- realistic structure
-- local usability
-- extension points for real infrastructure
