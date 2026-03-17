@@ -1,4 +1,4 @@
-# OpenStack VM Lifecycle API
+# OpenStack VM Lifecycle API POC
 
 A proof-of-concept FastAPI service for managing OpenStack VM lifecycle operations.
 
