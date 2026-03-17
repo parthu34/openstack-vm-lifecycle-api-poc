@@ -1,9 +1,13 @@
+import logging
+
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.core.exceptions import AppException
 from app.models.common import ErrorDetail, ErrorResponse
+
+logger = logging.getLogger("app.errors")
 
 
 def register_exception_handlers(app: FastAPI) -> None:
@@ -12,6 +16,13 @@ def register_exception_handlers(app: FastAPI) -> None:
         request: Request,
         exc: AppException,
     ) -> JSONResponse:
+        logger.warning(
+            "app_exception path=%s code=%s status_code=%s",
+            request.url.path,
+            exc.code,
+            exc.status_code,
+        )
+
         response = ErrorResponse(
             error=ErrorDetail(
                 code=exc.code,
@@ -29,6 +40,12 @@ def register_exception_handlers(app: FastAPI) -> None:
         request: Request,
         exc: RequestValidationError,
     ) -> JSONResponse:
+        logger.warning(
+            "validation_exception path=%s error_count=%s",
+            request.url.path,
+            len(exc.errors()),
+        )
+
         response = ErrorResponse(
             error=ErrorDetail(
                 code="request_validation_error",
