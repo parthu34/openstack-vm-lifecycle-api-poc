@@ -52,3 +52,29 @@ class ProviderConfigurationError(AppException):
             status_code=500,
             details={"provider_mode": provider_mode},
         )
+
+
+class CloudResourceLookupError(AppException):
+    def __init__(self, resource_type: str, resource_value: str) -> None:
+        super().__init__(
+            code="cloud_resource_lookup_failed",
+            message=(
+                f"Could not find {resource_type} "
+                f"'{resource_value}' in OpenStack"
+            ),
+            status_code=400,
+            details={
+                "resource_type": resource_type,
+                "resource_value": resource_value,
+            },
+        )
+
+
+class CloudOperationError(AppException):
+    def __init__(self, operation: str, details: dict[str, Any] | None = None) -> None:
+        super().__init__(
+            code="cloud_operation_failed",
+            message=f"OpenStack operation '{operation}' failed",
+            status_code=502,
+            details=details,
+        )
