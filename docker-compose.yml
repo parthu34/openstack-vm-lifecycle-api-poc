@@ -1,0 +1,12 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openstack-vm-lifecycle-api-poc
+    ports:
+      - "8000:8000"
+    environment:
+      PROVIDER_MODE: mock
+      ENVIRONMENT: dev
+    restart: unless-stopped
