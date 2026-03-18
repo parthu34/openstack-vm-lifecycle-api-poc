@@ -13,16 +13,6 @@ The project supports two provider modes:
 * `mock` — local in-memory provider for development, demos, and tests
 * `openstack` — real provider using `openstacksdk`
 
-## Why This Design
-
-The application uses a provider abstraction so the API and service layers do not depend directly on a live OpenStack environment.
-
-This approach gives three advantages:
-
-1. The prototype runs locally without cloud credentials
-2. Tests stay deterministic and fast
-3. The same API surface can later be backed by a real OpenStack cloud
-
 ## Key Features
 
 * FastAPI REST API for VM lifecycle operations
@@ -205,25 +195,6 @@ The API returns structured errors in this shape:
 }
 ```
 
-## Current Scope and Tradeoffs
-
-This project is intentionally scoped as a proof-of-concept for a 2–4 hour assessment.
-
-### What Is Included
-
-* API design for VM lifecycle operations
-* Working local prototype in mock mode
-* Real OpenStack integration path
-* Tests, Docker support, and CI
-
-### What Is Not Included Yet
-
-* Authentication/authorization
-* Persistent database storage
-* Background job execution for long-running cloud operations
-* Prometheus metrics
-* Production deployment manifests
-
 ## Design Notes
 
 See the detailed design writeup here:
@@ -241,17 +212,6 @@ Recommended review flow:
 4. Create, list, update, and delete a VM through Swagger UI
 5. Review `docs/architecture.md`
 6. Review the tests and provider abstraction
-
-## Submission Notes
-
-This repository is a proof-of-concept built to demonstrate:
-
-* API design
-* Python engineering fundamentals
-* Service-oriented structure
-* Mock-first development
-* OpenStack integration readiness
-* Practical DevOps awareness
 
 ## License
 
